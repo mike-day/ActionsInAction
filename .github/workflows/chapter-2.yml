@@ -1,0 +1,19 @@
+name: Chapter 2
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  chapter-2:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "👋 Hello World"
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
+      - name: List files in the repository
+        run: |
+          echo "The repository ${{github.repository}} contains the following files:"
+          tree
