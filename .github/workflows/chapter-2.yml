@@ -35,5 +35,12 @@ jobs:
         uses: actions/checkout@v4.1.7
       - name: List files in the repository
         run: |
-          echo "The repository ${{github.repository}} contains the following files:"
+          echo "The repository ${{ github.repository }} contains the following files:"
           tree
+      - name: Workflow Inputs
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          echo "Homedrive: ${{ inputs.homedrive }}"
+          echo "Log level: ${{ inputs.log-level }}"
+          echo "Tag source: ${{ 'inputs.tag' }}"
+          echo "Environment: ${{ inputs.environment }}"
