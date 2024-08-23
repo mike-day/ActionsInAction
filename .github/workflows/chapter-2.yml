@@ -29,7 +29,10 @@ on:
           - development
           - staging
           - production
-
+  repository_dispatch:
+    types:
+      [update, insert]
+  
 jobs:
   chapter-2:
     runs-on: ubuntu-latest
@@ -41,10 +44,14 @@ jobs:
         run: |
           echo "The repository ${{ github.repository }} contains the following files:"
           tree
-      - name: Workflow Inputs
+      - name: Workflow Dispatch Inputs
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
           echo "Homedrive: ${{ inputs.homedrive }}"
           echo "Log level: ${{ inputs.log-level }}"
           echo "Tag source: ${{ inputs.tag }}"
           echo "Environment: ${{ inputs.environment }}"
+      - name: Repository Dispatch Payload
+        if: ${{ github.event_name == 'repository_dispatch' }}
+        run: |
+          echo "Payload: ${{ toJSON(github.event.client_payload) }}"
