@@ -46,5 +46,5 @@ jobs:
         run: |
           echo "Homedrive: ${{ inputs.homedrive }}"
           echo "Log level: ${{ inputs.log-level }}"
-          echo "Tag source: ${{ 'inputs.tag' }}"
+          echo "Tag source: ${{ inputs.tag }}"
           echo "Environment: ${{ inputs.environment }}"
